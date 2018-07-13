@@ -50,12 +50,13 @@ class PiecesPage extends Component {
               placeholder="Description" />
             <input id="image_url" value={ this.state.image_url} onChange={this.handleChange} 
             placeholder="URL"/>
-              <select value={this.state.project_id} onChange={this.handleChange}>
-             
-                  <option value='Project1'>Project 1</option>
-                  <option value='Project2'>Project 2</option>
+              <select id="project_id" value={this.state.project_id} onChange={this.handleChange}>
+              {this.props.projects.projectsReducer.map( item =>
+                  <option value={item.id}>{item.name}</option>
+              )};
               </select>
              <button onClick={this.handleClick}>Add Item</button>
+             <pre>{JSON.stringify(this.props.projects)}</pre>
           </form>
           <ShowPieces />
         </div>
@@ -63,8 +64,4 @@ class PiecesPage extends Component {
     }
   }
   
-  const mapReduxStateToProps = state => ({
-      user: state.user
-  });
-  
-  export default connect(mapReduxStateToProps,mapStateToProps)(PiecesPage);
+  export default connect(mapStateToProps)(PiecesPage);

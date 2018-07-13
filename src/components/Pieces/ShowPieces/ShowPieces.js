@@ -32,8 +32,9 @@ class ShowPieces extends Component {
                     <div key={item.id}>
                         <h3>{item.name}</h3>
                         <h3>{item.description}</h3>
+                        <h3>{item.project_id}</h3>
                         <button onClick={ () => this.deleteItem(item.id) }>Delete</button>
-                        <img src={item.image_url} width="300" alt="unavailable"/>
+                        <img key={item.id} src={item.image_url} width="300" alt="unavailable"/>
                     </div>
                   )}
             </div>
