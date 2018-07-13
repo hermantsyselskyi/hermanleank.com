@@ -8,6 +8,7 @@ class ProjectPage extends Component {
     constructor(props){
         super(props);
         this.state = {
+            year:'',
             name:'',
             bg_url:'',
             description:'',
@@ -28,7 +29,7 @@ class ProjectPage extends Component {
       event.preventDefault();
       if(this.state.name.length > 0 || this.state.description.length > 0 || this.state.bg_url.length > 0){
         this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state });
-        this.setState({...this.state, name: '', bg_url: '', description: '',})
+        this.setState({...this.state, year:'',name: '', bg_url: '', description: '',})
       } else {
         alert('Somewthing wrong AddItemPage');
       }
@@ -39,6 +40,8 @@ class ProjectPage extends Component {
         <div>
           <Nav />
           <form>
+            <input id="year" value={this.state.year} onChange={this.handleChange} 
+            placeholder="Year" />
             <input id="name" value={ this.state.name } onChange={this.handleChange} 
             placeholder="Name" />
             <input id="description" value={ this.state.description } onChange={this.handleChange} 

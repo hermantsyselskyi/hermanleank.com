@@ -11,7 +11,7 @@ function* fetchAll(){
 }
 
 
-function* addItem(action){
+function* addPieces(action){
         console.log('in addItem');
         try {
             yield call( axios.post,'/api/pieces',action.payload)
@@ -21,19 +21,19 @@ function* addItem(action){
         }
     }
     
-function* deleteItem(action){
+function* deletePieces(action){
     try{
         yield call( axios.delete, `/api/pieces/${action.payload}`);
         yield put({type: 'FETCH_ALL'});
     } catch (error){
-        console.log('Error in deleteItem shelfSaga');
+        console.log('Error in deletePieces piecesSaga');
     }
 }
 
-function* shelfSaga(){
+function* piecesSaga(){
     yield takeEvery('FETCH_ALL', fetchAll);
-    yield takeEvery('ADD_PIECE', addItem);
-    yield takeEvery('DELETE_ITEM', deleteItem);
+    yield takeEvery('ADD_PIECE', addPieces);
+    yield takeEvery('DELETE_ITEM', deletePieces);
 }
 
-export default shelfSaga;
+export default piecesSaga;

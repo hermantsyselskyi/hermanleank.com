@@ -30,6 +30,7 @@ class ShowPieces extends Component {
             <div> 
                   {this.props.projects.projectsReducer.map( item =>
                     <div key={item.id}>
+                         <h3>{item.year}</h3>
                         <h3>{item.name}</h3>
                         <h3>{item.description}</h3>
                         <button onClick={ () => this.deleteItem(item.id) }>Delete</button>
