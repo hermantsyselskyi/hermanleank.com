@@ -5,7 +5,7 @@ const mapStateToProps = state => ({
     projects: state.projectsReducer
 });
 
-class ShowPieces extends Component {
+class ShowProjects extends Component {
     componentDidMount() {
       console.log(this.props.reduxStore);
       this.props.dispatch({type: 'GET_PROJECT'});
@@ -23,7 +23,6 @@ class ShowPieces extends Component {
           <div>
             <p>
               Projects:
-             
             </p>
            
             <div> 
@@ -44,7 +43,7 @@ class ShowPieces extends Component {
     }
 }
 
-  export default connect(mapStateToProps)( ShowPieces );
+  export default connect(mapStateToProps)( ShowProjects );
     // componentDidUpdate() {
   //     if (!this.props.user.isLoading && this.props.user.userName === null) {
   //       this.props.history.push('home');

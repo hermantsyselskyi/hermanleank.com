@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import Nav from '../../Nav/Nav';
 import ShowPieces from '../ShowPieces/ShowPieces';
 
-const mapStateToProps = state => ({
-  projects: state.projectsReducer
+const mapReduxStateToProps = state => ({
+  user: state.user,
+  state
 });
 
 class PiecesPage extends Component {
@@ -43,6 +44,7 @@ class PiecesPage extends Component {
       return (
         <div>
           <Nav />
+          <pre>{JSON.stringify(this.props.state.projectReducer)}</pre>
           <form>
             <input id="name" value={ this.state.name } onChange={this.handleChange} 
             placeholder="Name" />
@@ -50,13 +52,16 @@ class PiecesPage extends Component {
               placeholder="Description" />
             <input id="image_url" value={ this.state.image_url} onChange={this.handleChange} 
             placeholder="URL"/>
-              <select id="project_id" value={this.state.project_id} onChange={this.handleChange}>
-              {this.props.projects.projectsReducer.map( item =>
+             <input id="project_id" value={ this.state.project_id} onChange={this.handleChange} 
+            placeholder="Project"/>
+              {/* <select id="project_id" value={this.state.project_id} onChange={this.handleChange}>
+              {this.props.state.pieces.piecesReducer.map( item =>
                   <option value={item.id}>{item.name}</option>
 
               )};
               
-              </select>
+              </select> */}
+              
              <button onClick={this.handleClick}>Add Item</button>
              
           </form>
@@ -66,4 +71,5 @@ class PiecesPage extends Component {
     }
   }
   
-  export default connect(mapStateToProps)(PiecesPage);
+  
+  export default connect(mapReduxStateToProps)(PiecesPage);

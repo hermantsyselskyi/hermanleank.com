@@ -1,39 +1,39 @@
 import axios from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
 
-function* fetchAll(){
+function* getPieces(){
     try {
-        const items = yield call(axios.get, '/api/pieces');
-        yield put({type: 'STORE_ITEMS', payload: items.data})
+        const response = yield call(axios.get, '/api/pieces');
+        yield put({type: 'STORE_PIECE', payload: response.data})
     } catch (error) {
-        console.log('Error in fetchAll shelfSaga GET');
+        console.log('Error in getPieces');
     }
 }
 
 
 function* addPieces(action){
-        console.log('in addItem');
+        console.log('in addPieces');
         try {
             yield call( axios.post,'/api/pieces',action.payload)
-            yield put({type: 'FETCH_ALL'});
+            yield put({type: 'GET_PIECE'});
         } catch (error){
-            console.log('Error in addItem:', error)
+            console.log('Error in addPieces:', error)
         }
     }
     
 function* deletePieces(action){
     try{
         yield call( axios.delete, `/api/pieces/${action.payload}`);
-        yield put({type: 'FETCH_ALL'});
+        yield put({type: 'GET_PIECE'});
     } catch (error){
-        console.log('Error in deletePieces piecesSaga');
+        console.log('Error in deletePieces');
     }
 }
 
 function* piecesSaga(){
-    yield takeEvery('FETCH_ALL', fetchAll);
+    yield takeEvery('GET_PIECE', getPieces);
     yield takeEvery('ADD_PIECE', addPieces);
-    yield takeEvery('DELETE_ITEM', deletePieces);
+    yield takeEvery('DELETE_PIECE', deletePieces);
 }
 
 export default piecesSaga;

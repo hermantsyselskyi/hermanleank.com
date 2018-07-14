@@ -3,12 +3,11 @@ import { combineReducers } from 'redux';
 const piecesReducer = (state = [], action) => {
     switch (action.type) {
 
-        case 'ADD_PIECE':
-            state = [...state, action.payload];
-            break;
-      
+        case 'STORE_PIECE':
+            return action.payload;
+        default:
+            return state;
     }
-    return state;
 };
 
 export default combineReducers({

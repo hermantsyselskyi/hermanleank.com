@@ -6,7 +6,7 @@ function* getProjects(){
         let response = yield call(axios.get, '/api/projects');
         yield put({type: 'STORE_PROJECT', payload: response.data})
     } catch (error) {
-        console.log('Error in GET_PROJECT');
+        console.log('Error in getProjects');
     }
 }
 

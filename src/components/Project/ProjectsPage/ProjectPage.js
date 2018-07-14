@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import Nav from '../../Nav/Nav';
 import ShowProjects from '../ShowProjects/ShowProjects';
 
+const mapReduxStateToProps = state => ({
+  user: state.user,
+  state
+});
+
 class ProjectPage extends Component {
     constructor(props){
         super(props);
@@ -11,8 +16,7 @@ class ProjectPage extends Component {
             year:'',
             projectname:'',
             bg_url:'',
-            description:'',
-      
+            description:''
         }
     }
    
@@ -31,7 +35,7 @@ class ProjectPage extends Component {
         this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state });
         this.setState({...this.state, year:'',projectname: '', bg_url: '', description: ''})
       } else {
-        alert('Somewthing wrong AddItemPage');
+        alert('Somewthing wrong ADD_PROJECT');
       }
     }
 
@@ -56,8 +60,5 @@ class ProjectPage extends Component {
     }
   }
   
-  const mapReduxStateToProps = state => ({
-      user: state.user
-  });
-  
+ 
   export default connect(mapReduxStateToProps)(ProjectPage);

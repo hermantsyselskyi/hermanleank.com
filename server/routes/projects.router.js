@@ -9,7 +9,6 @@ const router = express.Router();
 router.get('/', (req, res) => {
     if (req.isAuthenticated()){
         console.log('in GET route to get all projects');
-        console.log('user', req.user);
         let queryText = `SELECT * FROM "projects"`;
         pool.query(queryText).then((result) => {
             res.send(result.rows);

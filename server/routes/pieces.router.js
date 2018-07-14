@@ -8,8 +8,7 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     if (req.isAuthenticated()){
-        console.log('in GET route to get all items on shelf');
-        console.log('user', req.user);
+        console.log('in GET route to get all pieces');
         let queryText = `SELECT * FROM "pieces"`;
         pool.query(queryText).then((result) => {
             res.send(result.rows);
@@ -32,14 +31,14 @@ router.post('/', (req, res) => {
         VALUES($1, $2, $3, $4)`;
         pool.query(queryText, [
             req.body.project_id,
-            req.user.name,
+            req.body.name,
             req.body.image_url,
             req.body.description
         ]).then((result) => {
             console.log('back from db with:', result);
             res.sendStatus(200);
         }).catch((error) => {
-            console.log('error in POST', error);
+            console.log('error in POST pieces', error);
             res.sendStatus(500);
         })
     } else {
@@ -49,11 +48,11 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     if(req.isAuthenticated()){
-    queryText = 'DELETE FROM item where id = $1;';
+    queryText = 'DELETE FROM pieces where id = $1;';
     pool.query(queryText, [req.params.id]).then(result => {
         res.sendStatus(200);
     }).catch(error => {
-        console.log('Error handling DELETE for /api/shelf: ', error);
+        console.log('Error handling DELETE pieces ', error);
         res.sendStatus(500)});
     } else {
         res.sendStatus(403);
