@@ -6,18 +6,17 @@ const mapStateToProps = state => ({
 });
 
 class ShowPieces extends Component {
-
     componentDidMount() {
       console.log(this.props.reduxStore);
-    
+      this.props.dispatch({type: 'GET_PROJECT'});
+
     }
+    deleteItem = (id) => {
+      console.log(id);
+      this.props.dispatch({type: 'DELETE_PROJECT', payload: id})
+  }
   
 
-
-    deleteItem = (id) => {
-        console.log(id);
-        this.props.dispatch({type: 'DELETE_ITEM', payload: id})
-    }
   
     render() {
         return (
@@ -46,3 +45,9 @@ class ShowPieces extends Component {
 }
 
   export default connect(mapStateToProps)( ShowPieces );
+    // componentDidUpdate() {
+  //     if (!this.props.user.isLoading && this.props.user.userName === null) {
+  //       this.props.history.push('home');
+  //     }
+  //   }
+

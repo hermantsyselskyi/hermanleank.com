@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-    pieces: state.piecesReducer
+    pieces: state.pieces
 });
 
 class ShowPieces extends Component {
 
     componentDidMount() {
       console.log(this.props.reduxStore);
-    
+    this.props.dispatch({type: 'FETCH_ALL'});
     }
   
 

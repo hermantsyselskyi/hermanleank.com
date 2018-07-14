@@ -26,12 +26,13 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
+    console.log('IN post');
     if (req.isAuthenticated()){
         console.log('this is req.body:', req.body);
         const queryText = `INSERT INTO "projects" ("year","projectname","bg_url","description")
         VALUES($1, $2, $3, $4)`;
         pool.query(queryText, [
-            req.user.year,
+            req.body.year,
             req.body.projectname,
             req.body.bg_url,
             req.body.description

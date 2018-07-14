@@ -1,22 +1,21 @@
 import axios from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
-import projectsReducer from '../reducers/projectsReducer';
 
-function* fetchAll(){
+function* getProjects(){
     try {
-        const items = yield call(axios.get, '/api/projects');
-        yield put({type: 'STORE_ITEMS', payload: items.data})
+        let response = yield call(axios.get, '/api/projects');
+        yield put({type: 'STORE_PROJECT', payload: response.data})
     } catch (error) {
-        console.log('Error in fetchAll projectsReducer GET');
+        console.log('Error in GET_PROJECT');
     }
 }
 
 
 function* addProjects(action){
-        console.log('in addItem');
+        console.log('in addProjects');
         try {
             yield call( axios.post,'/api/projects',action.payload)
-            yield put({type: 'FETCH_ALL'});
+            yield put({type: 'GET_PROJECT'});
         } catch (error){
             console.log('Error in addProjects:', error)
         }
@@ -25,14 +24,14 @@ function* addProjects(action){
 function* deleteProjects(action){
     try{
         yield call( axios.delete, `/api/projects/${action.payload}`);
-        yield put({type: 'FETCH_ALL'});
+        yield put({type: 'GET_PROJECT'});
     } catch (error){
         console.log('Error in deleteProjects');
     }
 }
 
 function* projectsSaga(){
-    yield takeEvery('FETCH_ALL', fetchAll);
+    yield takeEvery('GET_PROJECT', getProjects);
     yield takeEvery('ADD_PROJECT', addProjects);
     yield takeEvery('DELETE_PROJECT', deleteProjects);
 }

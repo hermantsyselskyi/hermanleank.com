@@ -35,7 +35,7 @@ class PiecesPage extends Component {
         this.props.dispatch({ type: 'ADD_PIECE', payload: this.state });
         this.setState({...this.state, name: '',  image_url: '',description: '', project_id:''})
       } else {
-        alert('Somewthing wrong AddItemPage');
+        alert('Somewthing wrong ADD_PIECE');
       }
     }
 
@@ -53,10 +53,12 @@ class PiecesPage extends Component {
               <select id="project_id" value={this.state.project_id} onChange={this.handleChange}>
               {this.props.projects.projectsReducer.map( item =>
                   <option value={item.id}>{item.name}</option>
+
               )};
+              
               </select>
              <button onClick={this.handleClick}>Add Item</button>
-             <pre>{JSON.stringify(this.props.projects)}</pre>
+             
           </form>
           <ShowPieces />
         </div>
