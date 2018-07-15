@@ -17,7 +17,7 @@ class ShowPieces extends Component {
     }
     sellItem = (id) => {
       console.log(id);
-      this.props.dispatch({type: 'SELL_PIECE', payload: id})
+      this.props.dispatch({type: 'SET_SELL', payload: id})
     }
   
     render() {

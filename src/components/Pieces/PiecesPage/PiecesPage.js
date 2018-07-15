@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Nav from '../../Nav/Nav';
 import ShowPieces from '../ShowPieces/ShowPieces';
+import SellPieces from '../SellPieces/SellPieces';
 
 const mapReduxStateToProps = state => ({
   user: state.user,
@@ -66,8 +67,9 @@ class PiecesPage extends Component {
               </select>
               
              <button onClick={this.handleClick}>Add Item</button>
-             
+             <SellPieces />
           </form>
+        
           <ShowPieces />
         </div>
       );
