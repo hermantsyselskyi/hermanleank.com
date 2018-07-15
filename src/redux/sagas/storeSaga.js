@@ -3,10 +3,10 @@ import {call, put, takeEvery} from 'redux-saga/effects';
 
 function* getStore(){
     try {
-        let response = yield call(axios.get, '/api/projects');
+        let response = yield call(axios.get, '/api/store');
         yield put({type: 'STORE_STORE', payload: response.data})
     } catch (error) {
-        console.log('Error in getProjects');
+        console.log('Error in getStore');
     }
 }
 

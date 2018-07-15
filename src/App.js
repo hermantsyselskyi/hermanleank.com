@@ -12,8 +12,8 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
 import YearsPage from './components/YearsPage/YearsPage';
 //Store
-import StorePage from './components/Store/StorePage';
-import ShowStore from './components/Store/ShowStore';
+import StorePage from './components/Store/StorePage/StorePage';
+import ShowStore from './components/Store/ShowStore/ShowStore';
 //Pieces
 import PiecesPage from './components/Pieces/PiecesPage/PiecesPage';
 import ShowPieces from './components/Pieces/ShowPieces/ShowPieces';

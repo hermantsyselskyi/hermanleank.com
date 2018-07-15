@@ -9,7 +9,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     if (req.isAuthenticated()){
         console.log('in GET route to get all store');
-        let queryText = `SELECT * FROM "store"`;
+        let queryText = `select store.*, pieces.description, pieces.image_url, pieces.name
+                         pieces.project_id FROM store join pieces on pieces.id = store.pieces_id;`;
         pool.query(queryText).then((result) => {
             res.send(result.rows);
         }).catch((error) => {

@@ -26,6 +26,7 @@ class ShowProjects extends Component {
             </p>
             
             <div> 
+              
                   {this.props.projects.projectsReducer.map( item =>
                     <div key={item.id}>
                          <h3>{item.year}</h3>

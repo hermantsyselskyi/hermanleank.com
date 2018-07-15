@@ -35,7 +35,6 @@ function* piecesSaga(){
     yield takeEvery('GET_PIECE', getPieces);
     yield takeEvery('ADD_PIECE', addPieces);
     yield takeEvery('DELETE_PIECE', deletePieces);
-    yield takeEvery('SELL_PIECE', sellPieces)
 }
 
 export default piecesSaga;

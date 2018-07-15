@@ -9,6 +9,6 @@ const storeReducer = (state = [], action) => {
     }
 };
 
-export default storeReducers({
+export default combineReducers({
     storeReducer
 });
