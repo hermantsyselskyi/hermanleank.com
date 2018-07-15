@@ -8,8 +8,8 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     if (req.isAuthenticated()){
-        console.log('in GET route to get all projects');
-        let queryText = `SELECT * FROM "projects"`;
+        console.log('in GET route to get all store');
+        let queryText = `SELECT * FROM "store"`;
         pool.query(queryText).then((result) => {
             res.send(result.rows);
         }).catch((error) => {
@@ -28,13 +28,12 @@ router.post('/', (req, res) => {
     console.log('IN post');
     if (req.isAuthenticated()){
         console.log('this is req.body:', req.body);
-        const queryText = `INSERT INTO "projects" ("year","projectname","bg_url","description")
+        const queryText = `INSERT INTO "store" ("pieces_id","price","forsale")
         VALUES($1, $2, $3, $4)`;
         pool.query(queryText, [
             req.body.year,
-            req.body.projectname,
-            req.body.bg_url,
-            req.body.description
+            req.body.price,
+            req.body.forsale
         ]).then((result) => {
             console.log('back from db with:', result);
             res.sendStatus(200);
@@ -48,11 +47,11 @@ router.post('/', (req, res) => {
 });
 router.delete('/:id', (req, res) => {
     if(req.isAuthenticated()){
-    queryText = 'DELETE FROM projects where id = $1;';
+    queryText = 'DELETE FROM store where id = $1;';
     pool.query(queryText, [req.params.id]).then(result => {
         res.sendStatus(200);
     }).catch(error => {
-        console.log('Error handling DELETE projects ', error);
+        console.log('Error handling DELETE store ', error);
         res.sendStatus(500)});
     } else {
         res.sendStatus(403);

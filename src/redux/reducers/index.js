@@ -4,12 +4,13 @@ import login from './loginReducer';
 
 import piecesReducer from './piecesReducer';
 import projectsReducer from './projectsReducer';
- 
+import storeReducer from './storeReducer';
 const store = combineReducers({
   user,
   login,
   piecesReducer,
-  projectsReducer
+  projectsReducer,
+  storeReducer
 });
 
 export default store;

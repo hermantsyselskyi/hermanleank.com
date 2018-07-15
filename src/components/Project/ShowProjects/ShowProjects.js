@@ -24,7 +24,7 @@ class ShowProjects extends Component {
             <p>
               Total projects: {this.props.projects.projectsReducer.length}
             </p>
-           
+            
             <div> 
                   {this.props.projects.projectsReducer.map( item =>
                     <div key={item.id}>

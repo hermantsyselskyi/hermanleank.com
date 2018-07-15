@@ -15,6 +15,10 @@ class ShowPieces extends Component {
         console.log(id);
         this.props.dispatch({type: 'DELETE_PIECE', payload: id})
     }
+    sellItem = (id) => {
+      console.log(id);
+      this.props.dispatch({type: 'SELL_PIECE', payload: id})
+    }
   
     render() {
         return (
@@ -31,7 +35,7 @@ class ShowPieces extends Component {
                         <h3>{item.description}</h3>
                         <h3>{item.project_id}</h3>
                         <button onClick={ () => this.deleteItem(item.id) }>Delete</button>
-                        <button onClick={ () => this.deleteItem(item.id) }>Sell</button>
+                        <button onClick={ () => this.sellItem(item.id) }>Sell</button>
                         <img key={item.id} src={item.image_url} width="300" alt="unavailable"/>
                     </div>
                   )}

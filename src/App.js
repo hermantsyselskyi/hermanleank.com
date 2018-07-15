@@ -10,9 +10,10 @@ import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
-import StorePage from './components/StorePage/StorePage';
 import YearsPage from './components/YearsPage/YearsPage';
-
+//Store
+import StorePage from './components/Store/StorePage';
+import ShowStore from './components/Store/ShowStore';
 //Pieces
 import PiecesPage from './components/Pieces/PiecesPage/PiecesPage';
 import ShowPieces from './components/Pieces/ShowPieces/ShowPieces';
@@ -64,7 +65,10 @@ const App = () => (
         path='/showProjects'
         components={ShowProjects}
         />
-
+        <Route
+        path='/showStore'
+        components={ShowStore}
+        />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
 
