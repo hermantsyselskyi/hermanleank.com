@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
     pieces: state.piecesReducer
+
 });
 
 class ShowPieces extends Component {
@@ -19,7 +20,7 @@ class ShowPieces extends Component {
         return (
           <div>
             <p>
-              Pieces:
+              Total pieces: {this.props.pieces.piecesReducer.length}
             </p>
            
             <div> 
@@ -30,6 +31,7 @@ class ShowPieces extends Component {
                         <h3>{item.description}</h3>
                         <h3>{item.project_id}</h3>
                         <button onClick={ () => this.deleteItem(item.id) }>Delete</button>
+                        <button onClick={ () => this.deleteItem(item.id) }>Sell</button>
                         <img key={item.id} src={item.image_url} width="300" alt="unavailable"/>
                     </div>
                   )}

@@ -6,7 +6,8 @@ import ShowPieces from '../ShowPieces/ShowPieces';
 
 const mapReduxStateToProps = state => ({
   user: state.user,
-  state
+  state,
+  projects: state.projectsReducer
 });
 
 class PiecesPage extends Component {
@@ -20,7 +21,11 @@ class PiecesPage extends Component {
         }
     }
  
-   
+    componentDidMount() {
+      console.log(this.props.reduxStore);
+      this.props.dispatch({type: 'GET_PROJECT'});
+
+    }
 
     handleChange = (event) => {
       const prop = event.target.id;
@@ -52,15 +57,13 @@ class PiecesPage extends Component {
               placeholder="Description" />
             <input id="image_url" value={ this.state.image_url} onChange={this.handleChange} 
             placeholder="URL"/>
-             <input id="project_id" value={ this.state.project_id} onChange={this.handleChange} 
-            placeholder="Project"/>
-              {/* <select id="project_id" value={this.state.project_id} onChange={this.handleChange}>
-              {this.props.state.pieces.piecesReducer.map( item =>
-                  <option value={item.id}>{item.name}</option>
+              <select id="project_id" value={this.state.project_id} onChange={this.handleChange}>
+              {this.props.projects.projectsReducer.map( item =>
+                  <option key={item.id} value={item.id}>{item.projectname}</option>
 
               )};
               
-              </select> */}
+              </select>
               
              <button onClick={this.handleClick}>Add Item</button>
              
