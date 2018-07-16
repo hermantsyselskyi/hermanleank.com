@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-    store: state.storeReducer
+    store: state.storeReducer.storeReducer.storeList
 
 });
 
@@ -24,14 +24,13 @@ class ShowStore extends Component {
             </p> */}
            <p>Here</p>
             <div> 
-            <pre>{JSON.stringify(this.props.state)}</pre>
-                  {this.props.store.storeReducer.map( item =>
+            
+                  {this.props.store.map( item =>
                     <div key={item.id}>
                         <h3>{item.name}</h3>
                         <h3>{item.description}</h3>
                         <h3>{item.project_id}</h3>
                         <button onClick={ () => this.deleteItem(item.id) }>Delete</button>
-                        <button onClick={ () => this.sellItem(item.id) }>Sell</button>
                         <img key={item.id} src={item.image_url} width="300" alt="unavailable"/>
                     </div>
                   )}

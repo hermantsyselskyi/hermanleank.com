@@ -16,8 +16,9 @@ function* sellPieces(action){
 }
 
 function* storeSaga(){
-    yield takeEvery('SELL_PIECE', sellPieces);
-    yield takeEvery('GET_STORE', getStore)
+    yield takeEvery('SET_PRICE', sellPieces);
+    yield takeEvery('GET_STORE', getStore);
+    yield takeEvery('PIECE_SET_DONE', sellPieces);
 }
 
 export default storeSaga;

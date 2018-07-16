@@ -9,18 +9,15 @@ class SellPieces extends Component {
     constructor(props){
         super(props);
         this.state = {
-          pieceToSell: {
-            piece_id: this.props.store.piece_id,
+            piece_id: '',
             price: '',
             forsale: ''
-            } 
         }
     }
  
     componentDidMount() {
       console.log(this.props.reduxStore);
       this.props.dispatch({type: 'GET_STORE'});
-
     }
 
     handleChange = (event) => {
@@ -30,27 +27,21 @@ class SellPieces extends Component {
         ...this.state, [prop]: val
       });
     }
-  
-    handleClick = (event) => {
-      event.preventDefault();
-      if(this.state.piece_id !== 0 || this.state.price !== 0 || this.state.forsale!== 0){
-        this.props.dispatch({ type: 'SELL_PIECE', payload: this.state.pieceToSell });
-        this.setState({...this.state, name: '',  image_url: '',description: '', piece_id:''});
-      } else {
-        alert('Somewthing wrong ADD_PIECE');
-      }
+    setPrice = (price,forsale) => {
+      console.log(price,forsale);
+      this.props.dispatch({type: 'PIECE_SET_DONE', payload: {price: this.state.price , forsale: this.state.forsale}});
     }
 
     render() {
       return (
         <div>
         
-          <form>
-            <input id="price" value={ this.state.name } onChange={this.handleChange} 
+          <form className="forsale" >
+            <input id="price" value={ this.state.price } onChange={this.handleChange} 
             placeholder="Price" />
          
               <select id="forsale" value={this.state.forsale} onChange={this.handleChange}>
-              
+                  <option value="" selected id="disabled">-- Select --</option>
                   <option  value='FOR SALE'>FOR SALE</option>
                   <option  value='SOLD OUT'>SOLD OUT</option>
                   <option value='NOT AVAIABLE'>NOT AVIABLE</option>
@@ -59,7 +50,7 @@ class SellPieces extends Component {
               
               </select>
               
-             <button onClick={this.handleClick}>Sell piece</button>
+              <button onClick={ () => this.setPrice(this.state.price,this.state.forsale) }>Sell piece</button>
           </form>
         </div>
       );
