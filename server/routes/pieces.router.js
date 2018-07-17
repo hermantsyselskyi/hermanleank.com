@@ -58,4 +58,13 @@ router.delete('/:id', (req, res) => {
         res.sendStatus(403);
     }
 });
+router.put('/:id', (req, res)=>{
+    const queryText = `update pieces set id = $1;`;
+    pool.query(queryText, [ req.params.id]).then(result=>{
+        res.sendStatus(200);
+    }).catch(error=>{
+        console.log('Error handling PUT pieces', error);
+        res.sendStatus(500);
+    });
+});
 module.exports = router;

@@ -18,6 +18,7 @@ import ShowStore from './components/Store/ShowStore/ShowStore';
 import PiecesPage from './components/Pieces/PiecesPage/PiecesPage';
 import ShowPieces from './components/Pieces/ShowPieces/ShowPieces';
 import SellPieces from './components/Pieces/SellPieces/SellPieces';
+import EditPieces from './components/Pieces/EditPieces/EditPieces';
 //Project
 import ProjectsPage from './components/Project/ProjectsPage/ProjectPage';
 import ShowProjects from './components/Project/ShowProjects/ShowProjects';
@@ -74,6 +75,10 @@ const App = () => (
         path='/sellPieces'
         components={SellPieces}
         />
+          {/* <Route
+        path='/editPieces'
+        components={EditPieces}
+        /> */}
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
 

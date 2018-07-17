@@ -29,16 +29,16 @@ router.post('/', (req, res) => {
     if (req.isAuthenticated()){
         console.log('this is req.body:', req.body);
         const queryText = `INSERT INTO "store" ("pieces_id","price","forsale")
-        VALUES($1, $2, $3, $4)`;
+        VALUES($1, $2, $3)`;
         pool.query(queryText, [
-            req.body.year,
+            req.body.pieces_id,
             req.body.price,
             req.body.forsale
         ]).then((result) => {
             console.log('back from db with:', result);
             res.sendStatus(200);
         }).catch((error) => {
-            console.log('error in POST projects', error);
+            console.log('error in POST store', error);
             res.sendStatus(500);
         })
     } else {

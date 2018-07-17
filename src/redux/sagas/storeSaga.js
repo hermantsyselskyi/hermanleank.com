@@ -1,6 +1,15 @@
 import axios from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
 
+function* addStore (action){
+    console.log('in addStore',action.payload);
+    try {
+    yield call( axios.post, '/api/store',action.payload);
+    yield put({type: 'GET_STORE'});
+} catch (error){
+    console.log('Error in addStore:', error)
+}
+}
 function* getStore(){
     try {
         let response = yield call(axios.get, '/api/store');
@@ -10,15 +19,9 @@ function* getStore(){
     }
 }
 
-function* sellPieces(action){
-        yield call( axios.post, `/api/store/${action.payload}`);
-        yield put({type: 'GET_STORE'});
-}
-
 function* storeSaga(){
-    yield takeEvery('SET_PRICE', sellPieces);
     yield takeEvery('GET_STORE', getStore);
-    yield takeEvery('PIECE_SET_DONE', sellPieces);
+    yield takeEvery('ADD_STORE', addStore);
 }
 
 export default storeSaga;

@@ -28,13 +28,21 @@ function* deletePieces(action){
         console.log('Error in deletePieces');
     }
 }
-
+function* editPieces(action){
+    try {
+        yield call(axios.put, 'api/pieces/', action.payload);
+        yield put({type: 'GET_PIECE'});
+    } catch (error) {
+        console.log('Error in editPieces');
+    }
+}
 
 
 function* piecesSaga(){
     yield takeEvery('GET_PIECE', getPieces);
     yield takeEvery('ADD_PIECE', addPieces);
     yield takeEvery('DELETE_PIECE', deletePieces);
+    yield takeEvery('EDIT_PIECE', editPieces);
 }
 
 export default piecesSaga;

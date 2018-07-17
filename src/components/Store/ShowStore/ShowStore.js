@@ -28,8 +28,9 @@ class ShowStore extends Component {
                   {this.props.store.map( item =>
                     <div key={item.id}>
                         <h3>{item.name}</h3>
+                        <h1>{item.price}</h1>
                         <h3>{item.description}</h3>
-                        <h3>{item.project_id}</h3>
+                        <h3>{item.projectname}</h3>
                         <button onClick={ () => this.deleteItem(item.id) }>Delete</button>
                         <img key={item.id} src={item.image_url} width="300" alt="unavailable"/>
                     </div>

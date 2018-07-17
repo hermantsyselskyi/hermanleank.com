@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Nav from '../../Nav/Nav';
-import ShowPieces from '../ShowPieces/ShowPieces';
-import SellPieces from '../SellPieces/SellPieces';
-import EditPieces from '../EditPieces/EditPieces';
-
 const mapReduxStateToProps = state => ({
   user: state.user,
   state,
-  projects: state.projectsReducer
+  projects: state.projectsReducer,
+  store: state.storeReducer
 });
 
-class PiecesPage extends Component {
+class EditPieces extends Component {
     constructor(props){
         super(props);
         this.state = {
             name:'',
             image_url:'',
             description:'',
-            project_id: ''
+            project_id: '',
+            price: '',
+            forsale: ''
         }
     }
  
     componentDidMount() {
+      //console.log('Is this id of pieces is in store?' ,this.props.piecesReducer.piecesReducer.pieces_id)
       console.log(this.props.reduxStore);
       this.props.dispatch({type: 'GET_PROJECT'});
-
+      this.props.dispatch({type: 'GET_STORE'});
+      //Input values of specific SQL line
+      this.setState({...this.state, name: '',  image_url: '',description: '', project_id:''})
     }
 
     handleChange = (event) => {
@@ -39,18 +40,22 @@ class PiecesPage extends Component {
   
     handleClick = (event) => {
       event.preventDefault();
-      if(this.state.name.length > 0 || this.state.description.length > 0 || this.state.image_url.length > 0){
-        this.props.dispatch({ type: 'ADD_PIECE', payload: this.state });
+     
+    //   if(this.state.name.length > 0 || this.state.description.length > 0 || this.state.image_url.length > 0){
+        this.props.dispatch({ type: 'EDIT_PIECE', payload: this.state });
         this.setState({...this.state, name: '',  image_url: '',description: '', project_id:''})
-      } else {
-        alert('Somewthing wrong ADD_PIECE');
-      }
+    //   } else {
+    //     alert('Somewthing wrong EDIT_PIECE');
+    //   }
     }
 
     render() {
+        
+    //if object exist in store page show Price part
+
       return (
         <div>
-          <Nav />
+        
           <pre>{JSON.stringify(this.props.state.projectReducer)}</pre>
           <form>
             <input id="name" value={ this.state.name } onChange={this.handleChange} 
@@ -64,19 +69,37 @@ class PiecesPage extends Component {
                   <option key={item.id} value={item.id}>{item.projectname}</option>
 
               )};
+
               
               </select>
+
+
+
+            
+               <input id="price" value={ this.state.price } onChange={this.handleChange} 
+            placeholder="Price" />
+         
+              <select id="forsale" value={this.state.forsale} onChange={this.handleChange}>
+                  <option value="" defaultValue id="disabled">-- Select --</option>
+                  <option  value='FOR SALE'>FOR SALE</option>
+                  <option  value='SOLD OUT'>SOLD OUT</option>
+                  <option value='NOT AVAIABLE'>NOT AVIABLE</option>
+
+              )};
               
-             <button onClick={this.handleClick}>Add Item</button>
+              </select>
+
+
+
+
+              
+             <button onClick={this.handleClick}>Edit Item</button>
             
           </form>
-          <SellPieces />
-          <EditPieces />
-          <ShowPieces />
         </div>
       );
     }
   }
   
   
-  export default connect(mapReduxStateToProps)(PiecesPage);
+  export default connect(mapReduxStateToProps)(EditPieces);
