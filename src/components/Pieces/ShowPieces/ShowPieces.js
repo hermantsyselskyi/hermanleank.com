@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
     pieces: state.piecesReducer.piecesReducer.piecesList,
+    specPieces: state.piecesReducer.piecesReducer.specpiecesList
 });
 
 class ShowPieces extends Component {
@@ -21,6 +22,7 @@ class ShowPieces extends Component {
     editId = (id) => {
       console.log('In edit',id);
       this.props.dispatch({type: 'PIECE_SET_ID', payload: id});
+      this.props.dispatch({type: 'GET_SPEC_PIECE', payload: id});
     }
     render() {
         return (
@@ -30,7 +32,7 @@ class ShowPieces extends Component {
             </p>
            
             <div> 
-            <pre>{JSON.stringify(this.props.state)}</pre>
+            <pre>{JSON.stringify(this.props.specPieces)}</pre>
                   {this.props.pieces.map( item =>
                     <div key={item.id}>
                         <h3>{item.name}</h3>

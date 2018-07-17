@@ -15,7 +15,6 @@ class SellPieces extends Component {
     }
  
     componentDidMount() {
-    console.log(this.state.pieces_id);
       this.props.dispatch({type: 'GET_STORE'});
     }
 

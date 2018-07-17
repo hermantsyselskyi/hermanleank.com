@@ -9,7 +9,8 @@ import EditPieces from '../EditPieces/EditPieces';
 const mapReduxStateToProps = state => ({
   user: state.user,
   state,
-  projects: state.projectsReducer
+  projects: state.projectsReducer,
+  specPieces: state.piecesReducer.piecesReducer.specPiecesList
 });
 
 class PiecesPage extends Component {

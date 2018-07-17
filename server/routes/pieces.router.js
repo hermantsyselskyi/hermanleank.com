@@ -3,6 +3,23 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+
+router.get('/:id', (req, res) => {
+    console.log(req.params.id);
+    console.log('in GET route to get all spec pieces');
+    if (req.isAuthenticated()){
+        let queryText = `select store.*, pieces.description, pieces.image_url, pieces.name, pieces.project_id FROM pieces left join store on pieces.id = store.pieces_id where pieces.id=$1;`;
+        pool.query(queryText,[req.params.id]).then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
 /**
  * GET route template
  */
@@ -20,6 +37,8 @@ router.get('/', (req, res) => {
         res.sendStatus(403);
     }
 });
+
+
 
 /**
  * POST route template

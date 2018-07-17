@@ -75,10 +75,10 @@ const App = () => (
         path='/sellPieces'
         components={SellPieces}
         />
-          {/* <Route
+          <Route
         path='/editPieces'
         components={EditPieces}
-        /> */}
+        />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
 
