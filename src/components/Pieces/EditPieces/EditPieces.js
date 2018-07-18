@@ -47,6 +47,7 @@ class EditPieces extends Component {
       if( this.props.specialPiece && this.props.specialPiece.price ){
         console.log('I did not te up this path yet');
         this.props.dispatch({ type: 'EDIT_STORE', payload: this.props.state.piecesReducer.piecesReducer.specialPiece });
+        this.props.dispatch({ type: 'EDIT_PIECE', payload: this.props.state.piecesReducer.piecesReducer.specialPiece });
           }else{
             this.props.dispatch({ type: 'EDIT_PIECE', payload: this.props.state.piecesReducer.piecesReducer.specialPiece });
           }

@@ -57,4 +57,19 @@ router.delete('/:id', (req, res) => {
         res.sendStatus(403);
     }
 });
+
+router.put('/:id', (req, res)=>{
+    const queryText = `UPDATE store SET price=$1,forsale=$2 WHERE pieces_id=$3`;
+    pool.query(queryText, [
+        req.body.price,
+        req.body.forsale,
+        req.body.id
+    ]).then(result=>{
+        res.sendStatus(200);
+    }).catch(error=>{
+        console.log('Error handling PUT store', error);
+        res.sendStatus(500);
+    });
+});
+
 module.exports = router;

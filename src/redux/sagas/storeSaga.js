@@ -18,10 +18,21 @@ function* getStore(){
         console.log('Error in getStore');
     }
 }
+function* editStore(action){
+    let id = action.payload.id
+    console.log({id});
+    try {
+        yield call(axios.put, `api/store/${id}`, action.payload);
+        yield put({type: 'GET_STORE'});
+    } catch (error) {
+        console.log('Error in editStore');
+    }
+}
 
 function* storeSaga(){
     yield takeEvery('GET_STORE', getStore);
     yield takeEvery('ADD_STORE', addStore);
+    yield takeEvery('EDIT_STORE', editStore);
 }
 
 export default storeSaga;
