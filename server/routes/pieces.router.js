@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
     if (req.isAuthenticated()){
         let queryText = `select store.*, pieces.description, pieces.image_url, pieces.name, pieces.project_id FROM pieces left join store on pieces.id = store.pieces_id where pieces.id=$1;`;
         pool.query(queryText,[req.params.id]).then((result) => {
-            res.send(result.rows);
+            res.send(result.rows[0]);
         }).catch((error) => {
             console.log(error);
             res.sendStatus(500);

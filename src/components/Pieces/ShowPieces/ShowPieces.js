@@ -22,7 +22,8 @@ class ShowPieces extends Component {
     editId = (id) => {
       console.log('In edit',id);
       this.props.dispatch({type: 'PIECE_SET_ID', payload: id});
-      this.props.dispatch({type: 'GET_SPEC_PIECE', payload: id});
+      this.props.dispatch({type: 'GET_SPECIAL_PIECE', payload: id});
+      
     }
     render() {
         return (
