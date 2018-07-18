@@ -9,8 +9,8 @@ const mapReduxStateToProps = state => ({
 });
 
 class EditPieces extends Component {
-    constructor(props){
-        super(props);
+    // constructor(props){
+    //     super(props);
         // this.state = {
         //     name:'',
         //     image_url:'',
@@ -20,7 +20,7 @@ class EditPieces extends Component {
         //     forsale: '',
         //     isOnStore: ''
         // }
-    }
+    // }
  
     componentDidMount() {
         console.log('This props are',this.props);
@@ -44,13 +44,13 @@ class EditPieces extends Component {
 
     handleClick = (event) => {
       event.preventDefault();
-    
-    //   if(this.state.name.length > 0 || this.state.description.length > 0 || this.state.image_url.length > 0){
-        this.props.dispatch({ type: 'EDIT_PIECE', payload: this.state });
-       
-    //   } else {
-    //     alert('Somewthing wrong EDIT_PIECE');
-    //   }
+      if( this.props.specialPiece && this.props.specialPiece.price ){
+        console.log('I did not te up this path yet');
+        this.props.dispatch({ type: 'EDIT_STORE', payload: this.props.state.piecesReducer.piecesReducer.specialPiece });
+          }else{
+            this.props.dispatch({ type: 'EDIT_PIECE', payload: this.props.state.piecesReducer.piecesReducer.specialPiece });
+          }
+   
     }
 
     render() {

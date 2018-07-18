@@ -7,7 +7,8 @@ const piecesReducer = (state = { pieces_id:'',price:'',forsale:'',piecesList:[],
     project_id: '',
     price: '',
     forsale: '',
-    isOnStore: ''
+    isOnStore: '',
+    id: ''
 }}, action) => {
     switch (action.type) {
         case 'PIECE_SET_DONE':

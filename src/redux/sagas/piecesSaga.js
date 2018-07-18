@@ -38,8 +38,10 @@ function* deletePieces(action){
     }
 }
 function* editPieces(action){
+    let id = action.payload.id
+    console.log({id});
     try {
-        yield call(axios.put, 'api/pieces/', action.payload);
+        yield call(axios.put, `api/pieces/${id}`, action.payload);
         yield put({type: 'GET_PIECE'});
     } catch (error) {
         console.log('Error in editPieces');
