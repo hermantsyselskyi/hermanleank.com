@@ -5,7 +5,38 @@ import Nav from '../../Nav/Nav';
 import ShowPieces from '../ShowPieces/ShowPieces';
 import SellPieces from '../SellPieces/SellPieces';
 import EditPieces from '../EditPieces/EditPieces';
+//MaterialUI
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
+
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const styles = theme => ({
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
+});
 const mapReduxStateToProps = state => ({
   user: state.user,
   state,
@@ -17,12 +48,30 @@ class PiecesPage extends Component {
     constructor(props){
         super(props);
         this.state = {
+            openAdd: false,
+            openSell: false,
             name:'',
             image_url:'',
             description:'',
             project_id: ''
         }
     }
+
+  handleOpenAdd = () => {
+    this.setState({ openAdd: true });
+  };
+
+  handleCloseAdd = () => {
+    this.setState({ openAdd: false });
+  };
+
+  handleOpenSell = () => {
+    this.setState({ openSell: true });
+  };
+
+  handleCloseSell = () => {
+    this.setState({ openSell: false });
+  };
  
     componentDidMount() {
       console.log(this.props.reduxStore);
@@ -49,30 +98,46 @@ class PiecesPage extends Component {
     }
 
     render() {
-      
+      const { classes } = this.props;
+
       return (
         <div>
           <Nav />
-          <pre>{JSON.stringify(this.props.state.projectReducer)}</pre>
-          <form>
-            <input id="name" value={ this.state.name } onChange={this.handleChange} 
-            placeholder="Name" />
-            <input id="description" value={ this.state.description } onChange={this.handleChange} 
-              placeholder="Description" />
-            <input id="image_url" value={ this.state.image_url} onChange={this.handleChange} 
-            placeholder="URL"/>
-              <select id="project_id" value={this.state.project_id} onChange={this.handleChange}>
-              {this.props.projects.projectsReducer.map( item =>
-                  <option key={item.id} value={item.id}>{item.projectname}</option>
 
-              )};
-              
-              </select>
-              
+        <Button onClick={this.handleOpenAdd}>Add item</Button>
+
+        {/* ADD ITEM */}
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.openAdd}
+          onClose={this.handleCloseAdd}
+        >
+        <form>
+            <input id="name" value={ this.state.name } onChange={this.handleChange} placeholder="Name" />
+            <input id="description" value={ this.state.description } onChange={this.handleChange} placeholder="Description" />
+            <input id="image_url" value={ this.state.image_url} onChange={this.handleChange} placeholder="URL"/>
+              <select id="project_id" value={this.state.project_id} onChange={this.handleChange}>
+                  {this.props.projects.projectsReducer.map( item =>
+                  <option key={item.id} value={item.id}>{item.projectname}</option>)};
+               </select>
              <button onClick={this.handleClick}>Add Item</button>
-            
-          </form>
-          <SellPieces />
+        </form>
+        </Modal>
+
+        {/* SELL */}
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.openSell}
+          onClose={this.handleCloseSell}
+        >
+        <form>
+           <SellPieces />
+        </form>
+        </Modal>
+
+
           <EditPieces />
           <ShowPieces />
         </div>
@@ -80,5 +145,6 @@ class PiecesPage extends Component {
     }
   }
   
+
   
-  export default connect(mapReduxStateToProps)(PiecesPage);
+  export default  connect(mapReduxStateToProps)(PiecesPage);
