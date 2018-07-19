@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   login: state.login,
 });
 
-class Menu extends Component {
+class Timeline extends Component {
   constructor(props) {
     super(props);
 
@@ -31,19 +31,10 @@ class Menu extends Component {
   render() {
     return (
       <div>
-           Menu
-            <Link to="/timeline">
-            Timeline
-          </Link>
-            <Link to="/store">
-            Store
-          </Link>
-          <Link to="/Contact">
-            Contact
-          </Link>
+          Timeline
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps)(Menu);
+export default connect(mapStateToProps)(Timeline);

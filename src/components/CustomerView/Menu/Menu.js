@@ -35,7 +35,7 @@ class Menu extends Component {
             <Link to="/timeline">
             Timeline
           </Link>
-            <Link to="/store">
+            <Link to="/storefront">
             Store
           </Link>
           <Link to="/Contact">

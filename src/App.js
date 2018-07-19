@@ -25,15 +25,18 @@ import ShowProjects from './components/Project/ShowProjects/ShowProjects';
 //Customer View
 import HermanLeank from './components/CustomerView/HermanLeank/HermanLeank';
 import Menu from './components/CustomerView/Menu/Menu';
+import Contact from './components/CustomerView/Contact/Contact';
+import Store from './components/CustomerView/Store/Store';
+import Timeline from './components/CustomerView/Timeline/Timeline';
 
 import './styles/main.css';
 
 const App = () => (
   <div>
-    <Header title="Project Base" />
+   
     <Router>
       <Switch>
-        <Redirect exact from="/" to="/home" />
+        <Redirect exact from="/" to="/hermanleank" />
         <Route
           path="/hermanleank"
           component={HermanLeank}
@@ -41,6 +44,18 @@ const App = () => (
         <Route
           path="/menu"
           component={Menu}
+        />
+            <Route
+          path="/contact"
+          component={Contact}
+        />
+            <Route
+          path="/storefront"
+          component={Store}
+        />
+            <Route
+          path="/timeline"
+          component={Timeline}
         />
         <Route
           path="/home"
