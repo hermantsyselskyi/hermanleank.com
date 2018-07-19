@@ -49,6 +49,7 @@ class PiecesPage extends Component {
     }
 
     render() {
+      
       return (
         <div>
           <Nav />

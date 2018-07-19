@@ -26,6 +26,10 @@ class ShowPieces extends Component {
       
     }
     render() {
+      let content = null;
+        // if( this.props.specialPiece && this.props.specialPiece.price ) {
+        //         content =( className='Green' );
+        //     }
         return (
           <div>
             <p>
@@ -35,7 +39,9 @@ class ShowPieces extends Component {
             <div> 
             <pre>{JSON.stringify(this.props.specPieces)}</pre>
                   {this.props.pieces.map( item =>
-                    <div key={item.id}>
+                    <div key={item.id} 
+                    //{content} 
+                    >
                         <h3>{item.name}</h3>
                         <h3>{item.description}</h3>
                         <h3>{item.project_id}</h3>

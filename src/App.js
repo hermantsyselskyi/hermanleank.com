@@ -22,6 +22,9 @@ import EditPieces from './components/Pieces/EditPieces/EditPieces';
 //Project
 import ProjectsPage from './components/Project/ProjectsPage/ProjectPage';
 import ShowProjects from './components/Project/ShowProjects/ShowProjects';
+//Customer View
+import HermanLeank from './components/CustomerView/HermanLeank/HermanLeank';
+import Menu from './components/CustomerView/Menu/Menu';
 
 import './styles/main.css';
 
@@ -31,6 +34,14 @@ const App = () => (
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
+        <Route
+          path="/hermanleank"
+          component={HermanLeank}
+        />
+        <Route
+          path="/menu"
+          component={Menu}
+        />
         <Route
           path="/home"
           component={LoginPage}
