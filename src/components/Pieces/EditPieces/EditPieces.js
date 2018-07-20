@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 const mapReduxStateToProps = state => ({
   user: state.user,
   state,
@@ -67,10 +68,10 @@ class EditPieces extends Component {
                     placeholder="Price" />
                 
                     <select id="forsale" value={this.props.specialPiece.forsale} onChange={this.handleChange}>
-                        <option value="" defaultValue id="disabled">-- Select --</option>
+                   
                         <option  value='FOR SALE'>FOR SALE</option>
                         <option  value='SOLD OUT'>SOLD OUT</option>
-                        <option value='NOT AVAIABLE'>NOT AVIABLE</option>
+                        <option value='NOT AVAIABLE'>NOT AVAILABLE</option>
 
                     )};
                     
@@ -91,6 +92,7 @@ class EditPieces extends Component {
                     <input id="image_url" value={ this.props.specialPiece.image_url} onChange={this.handleChange} 
                     placeholder="URL"/>
                     <select id="project_id" value={this.props.specialPiece.project_id} onChange={this.handleChange}>
+                    <option defaultValue selected="selected" >Select project</option>
                     {this.props.projects.projectsReducer.map( item =>
                         <option key={item.id} value={item.id}>{item.projectname}</option>
                     )};

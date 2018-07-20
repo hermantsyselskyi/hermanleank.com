@@ -19,6 +19,7 @@ import PiecesPage from './components/Pieces/PiecesPage/PiecesPage';
 import ShowPieces from './components/Pieces/ShowPieces/ShowPieces';
 import SellPieces from './components/Pieces/SellPieces/SellPieces';
 import EditPieces from './components/Pieces/EditPieces/EditPieces';
+import AddPieces from './components/Pieces/AddPieces/AddPieces';
 //Project
 import ProjectsPage from './components/Project/ProjectsPage/ProjectPage';
 import ShowProjects from './components/Project/ShowProjects/ShowProjects';
@@ -72,6 +73,10 @@ const App = () => (
         <Route
           path="/pieces"
           component={PiecesPage}
+        />
+        <Route
+          path="/addpieces"
+          component={AddPieces}
         />
         <Route
           path="/store"

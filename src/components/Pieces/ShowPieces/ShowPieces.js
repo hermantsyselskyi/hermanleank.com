@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 const mapStateToProps = state => ({
     pieces: state.piecesReducer.piecesReducer.piecesList,
     specPieces: state.piecesReducer.piecesReducer.specpiecesList

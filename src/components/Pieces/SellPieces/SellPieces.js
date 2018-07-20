@@ -41,10 +41,10 @@ class SellPieces extends Component {
             placeholder="Price" />
          
               <select id="forsale" value={this.state.forsale} onChange={this.handleChange}>
-                  <option value="" defaultValue id="disabled">-- Select --</option>
+          
                   <option  value='FOR SALE'>FOR SALE</option>
                   <option  value='SOLD OUT'>SOLD OUT</option>
-                  <option value='NOT AVAIABLE'>NOT AVIABLE</option>
+                  <option value='NOT AVAIABLE'>NOT AVAILABLE</option>
 
               )};
               
