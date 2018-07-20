@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 const mapReduxStateToProps = state => ({
  pieces_id: state.piecesReducer.piecesReducer.pieces_id
@@ -30,7 +32,13 @@ class SellPieces extends Component {
       //this.props.dispatch({type: 'PIECE_SET_DONE', payload: {price: this.state.price , forsale: this.state.forsale}});
       console.log
       this.props.dispatch({ type: 'ADD_STORE', payload: {...this.state, pieces_id: this.props.pieces_id }});
+      this.props.dispatch({type: 'CLOSE_SELL', payload: false});
     }
+
+    handleCloseSell = () => {
+      this.props.dispatch({type: 'CLOSE_SELL', payload: false});
+    };
+  
 
     render() {
       return (
@@ -50,7 +58,8 @@ class SellPieces extends Component {
               
               </select>
               
-              <button onClick={ () => this.setPrice() }>Sell piece</button>
+              <Button onClick={ () => this.setPrice() }>Sell piece</Button>
+              <Button onClick={this.handleCloseSell}>Close</Button>
           </form>
         </div>
       );

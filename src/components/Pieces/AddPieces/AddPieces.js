@@ -37,14 +37,14 @@ class AddPieces extends Component {
         event.preventDefault();
         if(this.state.name.length > 0 || this.state.description.length > 0 || this.state.image_url.length > 0){
           this.props.dispatch({ type: 'ADD_PIECE', payload: this.state });
-         
+          this.props.dispatch({type: 'CLOSE_ADD', payload: false});
         } else {
           alert('Somewthing wrong ADD_PIECE');
         }
       }
       
       handleCloseAdd = () => {
-        this.props.dispatch({type: 'CLOSE_ADD', payload: 1});
+        this.props.dispatch({type: 'CLOSE_ADD', payload: false});
       };
     
 

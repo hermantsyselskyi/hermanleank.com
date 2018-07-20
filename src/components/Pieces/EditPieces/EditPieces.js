@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 
 const mapReduxStateToProps = state => ({
@@ -49,11 +51,16 @@ class EditPieces extends Component {
         console.log('I did not te up this path yet');
         this.props.dispatch({ type: 'EDIT_STORE', payload: this.props.state.piecesReducer.piecesReducer.specialPiece });
         this.props.dispatch({ type: 'EDIT_PIECE', payload: this.props.state.piecesReducer.piecesReducer.specialPiece });
+        this.props.dispatch({type: 'CLOSE_EDIT', payload: false});
           }else{
             this.props.dispatch({ type: 'EDIT_PIECE', payload: this.props.state.piecesReducer.piecesReducer.specialPiece });
+            this.props.dispatch({type: 'CLOSE_EDIT', payload: false});
           }
    
     }
+    handleCloseEdit = () => {
+        this.props.dispatch({type: 'CLOSE_EDIT', payload: false});
+      };
 
     render() {
         console.log(this.props.specialPiece)
@@ -98,7 +105,8 @@ class EditPieces extends Component {
                     )};
                     </select>
                     {content}
-                    <button onClick={this.handleClick}>Edit Item</button>
+                    <Button onClick={this.handleClick}>Edit Item</Button>
+                    <Button onClick={this.handleCloseEdit}>Close</Button>
                     {/* <button onClick={this.handleClickTest}>test</button> */}
                 </form>
             );

@@ -5,12 +5,14 @@
 }
 ul.slick-dots{
     border: 1px solid grey;
-    
-    display: flex;
-    align-items: center;
+    display: flex !important;
     justify-content: center;
+    position: static;
 }
 .main{
     height: 100vh;
     border: 1px solid green;
+}
+element.style {
+    display: flex;
 }

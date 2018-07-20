@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = state => ({
     pieces: state.piecesReducer.piecesReducer.piecesList,
@@ -18,15 +19,22 @@ class ShowPieces extends Component {
     }
     setId = (id) => {
       console.log(id);
+      
       this.props.dispatch({type: 'PIECE_SET_ID', payload: id});
+      this.props.dispatch({type: 'OPEN_SELL', payload: true });
       
     }
     editId = (id) => {
       console.log('In edit',id);
       this.props.dispatch({type: 'PIECE_SET_ID', payload: id});
       this.props.dispatch({type: 'GET_SPECIAL_PIECE', payload: id});
+      this.props.dispatch({type: 'OPEN_EDIT', payload: true});
       
     }
+
+  
+ 
+    
     render() {
       let content = null;
         // if( this.props.specialPiece && this.props.specialPiece.price ) {
@@ -47,9 +55,9 @@ class ShowPieces extends Component {
                         <h3>{item.name}</h3>
                         <h3>{item.description}</h3>
                         <h3>{item.project_id}</h3>
-                        <button onClick={ () => this.deleteItem(item.id) }>Delete</button>
-                        <button onClick={ () => this.setId(item.id) }>Sell</button>
-                        <button onClick={ () => this.editId(item.id) }>Edit</button>
+                        <Button onClick={ () => this.deleteItem(item.id) }>Delete</Button>
+                        <Button onClick={ () => this.setId(item.id) }>Sell</Button>
+                        <Button onClick={ () => this.editId(item.id) }>Edit</Button>
                         <img key={item.id} src={item.image_url} width="300" alt="unavailable"/>
                     </div>
                   )}

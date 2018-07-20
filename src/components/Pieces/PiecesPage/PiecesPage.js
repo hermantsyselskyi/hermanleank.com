@@ -47,26 +47,14 @@ class PiecesPage extends Component {
 
    
   handleOpenAdd = () => {
-
     this.props.dispatch({type: 'OPEN_ADD', payload: true });
-    this.props.dispatch({type: 'GET_PIECE'});
-
   };
 
   handleCloseAdd = () => {
     this.props.dispatch({type: 'CLOSE_ADD', payload: false});
-    this.props.dispatch({type: 'GET_PIECE'});
   };
 
-  // handleOpenSell = () => {
-  //   this.setState({ openSell: true });
-  // };
 
-  // handleCloseSell = () => {
-  //   this.setState({ openSell: false });
-  // };
- 
-    
 
   
 
@@ -82,31 +70,40 @@ class PiecesPage extends Component {
           onClose={this.handleCloseAdd}
         >
         <AddPieces />
-        
-  
-
         </Modal>
         )}
-        else{
-        }
-       
+        else if( this.props.state.storeReducer.storeReducer.open == true) {
+          return content =(
+            <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.props.state.storeReducer.storeReducer.open}
+          >
+          <SellPieces />
+          </Modal>
+          )}
+          
+          else if( this.props.state.editReducer.editReducer.open == true) {
+            return content =(
+              <Modal
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              open={this.props.state.editReducer.editReducer.open}
+            >
+            <EditPieces />
+            </Modal>
+            )}
 
       return (
         <div>
           <Nav />
           <div>
-          <Button onClick={this.handleOpenAdd}>Open</Button>
-          <Button onClick={this.handleCloseAdd}>Close</Button>
+          <Button onClick={this.handleOpenAdd}>Add pieces  +</Button>
           </div>
-        {/* ADD ITEM */}
-   
-{content}
         
-   
-{/* <AddPieces />
-<SellPieces />
-          <EditPieces />
-          <ShowPieces /> */}
+{content}
+       
+          <ShowPieces /> 
         </div>
       );
     }
