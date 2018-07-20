@@ -53,7 +53,7 @@ class AddPieces extends Component {
           render() {
 
             return (
-              <form>
+              <div>
                   <input id="name" value={ this.state.name } onChange={this.handleChange} placeholder="Name" />
                   <input id="description" value={ this.state.description } onChange={this.handleChange} placeholder="Description" />
                   <input id="image_url" value={ this.state.image_url} onChange={this.handleChange} placeholder="URL"/>
@@ -62,9 +62,9 @@ class AddPieces extends Component {
                         {this.props.projects.projectsReducer.map( item =>
                         <option key={item.id} value={item.id}>{item.projectname}</option>)};
                      </select>
-                   <button onClick={this.handleClick}>Add Item</button>
+                   <button onClick={this.handleClick}>Add Piece</button>
                    <Button onClick={this.handleCloseAdd}>Close</Button>
-              </form>
+              </div>
 
             );
           }

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const piecesReducer = (state = { open: false, openB: false ,pieces_id:'',price:'',forsale:'',piecesList:[],specialPiece:{
+const piecesReducer = (state = { open: false ,pieces_id:'',price:'',forsale:'',piecesList:[],specialPiece:{
     name:'',
     image_url:'',
     description:'',

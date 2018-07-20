@@ -89,7 +89,7 @@ class EditPieces extends Component {
                     );
             }
             return( 
-                <form>
+                <div>
                     {/* <input id="name" value={ this.state.name } onChange={this.handleChange} 
                     placeholder="Name" /> */}
                     <input id="name" value={ this.props.specialPiece.name } onChange={this.handleChange} 
@@ -105,10 +105,10 @@ class EditPieces extends Component {
                     )};
                     </select>
                     {content}
-                    <Button onClick={this.handleClick}>Edit Item</Button>
+                    <Button onClick={this.handleClick}>Edit Piece</Button>
                     <Button onClick={this.handleCloseEdit}>Close</Button>
                     {/* <button onClick={this.handleClickTest}>test</button> */}
-                </form>
+                </div>
             );
         }
     

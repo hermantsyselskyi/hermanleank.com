@@ -44,7 +44,7 @@ class SellPieces extends Component {
       return (
         <div>
         
-          <form className="forsale" >
+          <div className="forsale" >
             <input id="price" value={ this.state.price } onChange={this.handleChange} 
             placeholder="Price" />
          
@@ -60,7 +60,7 @@ class SellPieces extends Component {
               
               <Button onClick={ () => this.setPrice() }>Sell piece</Button>
               <Button onClick={this.handleCloseSell}>Close</Button>
-          </form>
+          </div>
         </div>
       );
     }

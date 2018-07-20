@@ -37,7 +37,7 @@ const App = () => (
    
     <Router>
       <Switch>
-        <Redirect exact from="/" to="/hermanleank" />
+        <Redirect exact from="/" to="/" />
         <Route
           path="/hermanleank"
           component={HermanLeank}
