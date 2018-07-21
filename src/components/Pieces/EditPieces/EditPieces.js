@@ -114,7 +114,7 @@ class EditPieces extends Component {
         );
     }
 
-    
+
 
 
 }
