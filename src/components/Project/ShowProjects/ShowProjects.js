@@ -32,7 +32,7 @@ class ShowProjects extends Component {
                         <h3>{item.projectname}</h3>
                         <h3>{item.description}</h3>
                         <button onClick={ () => this.deleteItem(item.id) }>Delete</button>
-                        <img src={item.image_url} width="300" alt="unavailable"/>
+                        <img src={item.bg_url} width="300" alt="unavailable"/>
                     </div>
                   )}
             </div>
